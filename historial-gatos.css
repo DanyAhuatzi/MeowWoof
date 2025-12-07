@@ -1,0 +1,79 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #e8f1fb; /* azul muy claro */
+  color: #333;
+}
+
+/* Encabezado principal */
+header {
+  background-color: #1976d2; /* azul fuerte */
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Contenedor general */
+.contenedor {
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 30px;
+}
+
+/* Sección con información del gato */
+.info-gato {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Imagen del gato */
+.foto-gato {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+/* Detalles del gato */
+.detalles { flex: 1; }
+.detalles h2 { color: #0d47a1; margin-bottom: 10px; } /* azul oscuro */
+.detalles p { margin: 6px 0; font-size: 15px; }
+
+/* Botones de acción */
+.botones {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.btn-volver, .btn-adoptar {
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn-volver { background-color: #b0bec5; color: #333; } /* gris azulado */
+.btn-adoptar { background-color: #1976d2; color: white; } /* azul */
+
+/* Efectos hover */
+.btn-volver:hover { background-color: #90a4ae; }
+.btn-adoptar:hover { background-color: #0d47a1; }
+
+/* Pie de página */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #1976d2;
+  color: white;
+  margin-top: 30px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}

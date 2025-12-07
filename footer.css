@@ -1,0 +1,56 @@
+/* ===== FOOTER GENERAL ===== */
+.footer {
+  background-color: #0A3E6E; /* azul fuerte */
+  color: white;
+  padding: 40px 20px;
+  margin-top: 50px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 30px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Títulos de secciones */
+.footer-section h3 {
+  color: #8EC6FF; /* azul claro contrastante */
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+/* Texto */
+.footer-section p {
+  margin: 6px 0;
+  font-size: 15px;
+  color: #E8F3FF; /* blanco ligeramente azulado */
+}
+
+/* Créditos resaltados */
+.footer-section strong {
+  color: #B8E2FF; 
+  font-weight: 600;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-section {
+    min-width: 100%;
+  }
+}
+

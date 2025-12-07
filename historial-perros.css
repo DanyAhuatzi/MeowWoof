@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #e6f0ff;
+  color: #333;
+}
+
+
+header {
+  background-color: #4a90e2;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* CONTENEDOR */
+.contenedor {
+  max-width: 900px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+/* INFO PERRO */
+.info-perro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.foto-perro {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.detalles h2 {
+  color: #4a90e2;
+  margin-bottom: 10px;
+}
+
+.detalles p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+/* BOTONES */
+.botones {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-volver, .btn-adoptar {
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-volver {
+  background-color: #ccc;
+  color: #333;
+}
+
+.btn-adoptar {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.btn-volver:hover {
+  background-color: #999;
+}
+
+.btn-adoptar:hover {
+  background-color: #357abd;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #4a90e2;
+  color: white;
+  margin-top: 30px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}

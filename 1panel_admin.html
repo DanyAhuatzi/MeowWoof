@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración | MeowWoof</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #a2c2e0, #f6e6e9);
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ====== ENCABEZADO SUPERIOR ====== */
+    header {
+      background-color: #0078d7;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+      height: 70px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+
+    .perfil-box {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .perfil-box img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 2px solid white;
+      object-fit: cover;
+      transition: 0.3s;
+    }
+
+    .perfil-box img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ====== PANEL DESPLEGABLE ====== */
+    .perfil-panel {
+      position: absolute;
+      top: 80px;
+      right: 40px;
+      width: 280px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+      padding: 20px;
+      text-align: center;
+      z-index: 100;
+      animation: aparecer 0.25s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .perfil-panel.oculto {
+      display: none;
+    }
+
+    .perfil-panel img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0078d7;
+      margin-bottom: 8px;
+    }
+
+    .perfil-panel h2 {
+      color: #0078d7;
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .perfil-panel p {
+      margin: 2px 0;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .logout-btn {
+      display: block;
+      margin-top: 15px;
+      background: #d9534f;
+      color: white;
+      padding: 8px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .logout-btn:hover {
+      background: #c9302c;
+    }
+
+    /* ====== CUERPO PRINCIPAL ====== */
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: calc(100vh - 70px);
+      text-align: center;
+    }
+
+    .panel {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      width: 400px;
+    }
+
+    .panel h2 {
+      color: #0078d7;
+      margin-bottom: 20px;
+    }
+
+    .botones {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .botones a {
+      display: block;
+      padding: 12px;
+      border-radius: 8px;
+      background-color: #0078d7;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .botones a:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🐾 Panel de Administración - MeowWoof</h1>
+
+    <!-- Icono del usuario (arriba a la derecha) -->
+    <div class="perfil-box" onclick="togglePerfil()">
+      <img src="admin_foto.png" alt="Administrador">
+    </div>
+
+    <!-- Panel desplegable -->
+    <div id="perfil-panel" class="perfil-panel oculto">
+      <img src="admin_foto.png" alt="Administrador">
+      <h2>KimDan Ahuatzi Cabrera</h2>
+      <p><strong>Email:</strong> admin@gmail.com</p>
+      <p><strong>Teléfono:</strong> 1646597946</p>
+      <p><strong>Usuario:</strong> admincrl2025</p>
+      <p><strong>Tipo:</strong> Administrador</p>
+      <a href="login.html" class="logout-btn">Cerrar sesión</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="panel">
+      <h2>Opciones disponibles</h2>
+      <div class="botones">
+        <a href="mostrar.html">Mostrar tablas</a>
+        <a href="1registrar_usuario.html">Registrar usuario</a>
+        <a href="1actualizar_usuario.html">Actualizar usuario</a>
+        <a href="1eliminar_usuario.html">Eliminar usuario</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Mostrar / ocultar el panel
+    function togglePerfil() {
+      document.getElementById("perfil-panel").classList.toggle("oculto");
+    }
+
+    // Cerrar si se hace clic fuera
+    document.addEventListener("click", function(e) {
+      const panel = document.getElementById("perfil-panel");
+      const icon = document.querySelector(".perfil-box");
+
+      if (!panel.contains(e.target) && !icon.contains(e.target)) {
+        panel.classList.add("oculto");
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* ======== ESTILOS GENERALES ======== */
+body {
+  font-family: 'Segoe UI', sans-serif; /* Fuente moderna y legible */
+  background-color: #fff; /* Color de fondo por defecto */
+  display: flex; /* Usamos flexbox para centrar el contenido */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  margin: 0; /* Elimina los márgenes del
+   body */
+  background: linear-gradient(135deg, #fff 60%, #0b2b63 60%); /* Fondo degradado en diagonal */
+}
+
+/* ======== CONTENEDOR PRINCIPAL ======== */
+.contenedor {
+  background: white; /* Fondo blanco del formulario */
+  padding: 40px; /* Espaciado interno */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Sombra para efecto de elevación */
+  width: 350px; /* Ancho fijo */
+  text-align: center; /* Centra el contenido del texto */
+}
+
+/* ======== TÍTULO ======== */
+h1 {
+  color: #0b2b63; /* Azul oscuro */
+  margin-bottom: 25px; /* Espacio debajo del título */
+}
+
+/* ======== CAMPOS DE ENTRADA ======== */
+input {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  padding: 12px; /* Espaciado interno */
+  margin: 8px 0; /* Espacio entre campos */
+  border-radius: 10px; /* Bordes redondeados */
+  border: none; /* Sin borde */
+  background: #eee; /* Fondo gris claro */
+  font-size: 14px; /* Tamaño de fuente del texto */
+}
+
+/* ======== CONTENEDOR DE CONTRASEÑA (ICONO DE OJO) ======== */
+.password-container {
+  position: relative; /* Permite posicionar el icono dentro */
+}
+
+/* ======== ICONO PARA MOSTRAR/OCULTAR CONTRASEÑA ======== */
+.toggle-password {
+  position: absolute; /* Posicionamiento dentro del input */
+  right: 12px; /* Espaciado desde la derecha */
+  top: 12px; /* Espaciado desde arriba */
+  cursor: pointer; /* Cambia el cursor al pasar encima */
+}
+
+/* ======== BOTÓN PRINCIPAL ======== */
+button {
+  width: 100%; /* Ancho completo */
+  background-color: #0b2b63; /* Azul principal */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  padding: 12px; /* Tamaño del botón */
+  border-radius: 8px; /* Bordes redondeados */
+  margin-top: 15px; /* Espacio superior */
+  cursor: pointer; /* Manita al pasar */
+  font-size: 15px; /* Tamaño de texto */
+}
+
+/* ======== EFECTO HOVER EN BOTÓN ======== */
+button:hover {
+  background-color: #163f91; /* Color más claro al pasar el mouse */
+}
+
+/* ======== MENSAJES DE ERROR ======== */
+.error {
+  color: red; /* Texto en rojo */
+  font-size: 12px; /* Tamaño pequeño */
+}
+
+/* ======== MENSAJE DE ÉXITO ======== */
+.exito {
+  color: green; /* Texto verde */
+  margin-top: 10px; /* Espacio superior */
+}
+/* ======== BOTÓN DE REGRESAR ======== */
+.btn-regresar {
+  width: 100%;
+  background-color: #ffffff;
+  color: #0b2b63;
+  border: 2px solid #0b2b63;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.btn-regresar:hover {
+  background-color: #e9eef7;
+  transform: scale(1.03);
+}

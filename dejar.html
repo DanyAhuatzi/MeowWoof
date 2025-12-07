@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Formulario para dejar una mascota</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#dff9fb,#c7ecee);
+    color:#103b56;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ===== NAVBAR ===== */
+  .navbar{
+    background-color:#3b5ea0;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:8px 40px;
+    height:80px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.12);
+    position:sticky;
+    top:0;
+    z-index:50;
+  }
+
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo img{width:70px;height:70px;border-radius:50%;object-fit:cover}
+  .logo h1{font-size:1.8rem;color:white;font-weight:700}
+
+  .nav-links{display:flex;align-items:center;gap:18px}
+  .nav-links a{
+    font-family:'Poppins',sans-serif;
+    text-decoration:none;color:white;font-size:1.1rem;
+    padding:12px 18px;border-radius:6px;
+    transition:all .18s;
+  }
+  .nav-links a:hover{background:rgba(255,255,255,0.08)}
+  .btn-inicio{font-weight:700;background:rgba(255,255,255,0.08)}
+
+  /* ===== SUBMENÚ ===== */
+  .submenu{
+    font-family:'Poppins', sans-serif !important;
+    background-color:#f5f5f5;
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    padding:14px 10px;
+    font-size:1rem;
+    font-weight:600;
+    box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  }
+  .submenu a{
+    text-decoration:none;
+    color:#0f2d52;
+    transition:0.18s;
+    padding:6px 10px;
+    border-radius:6px;
+  }
+  .submenu a:hover{
+    color:#3b5ea0;
+    background:rgba(59,94,160,0.08);
+  }
+
+  /* ===== CONTENEDOR PRINCIPAL ===== */
+  .page-inner {
+    max-width:1200px;
+    margin: 30px auto;
+    width: 94%;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-bottom:40px;
+  }
+
+  .container{
+    background:#ffffff;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    padding:30px 28px;
+    width:100%;
+    max-width:760px;
+  }
+
+  h1{
+    text-align:center;
+    color:#0a3d62;
+    margin-bottom:22px;
+    font-family:'Fredoka',sans-serif;
+    font-size:1.9rem;
+  }
+
+  .grid-datos{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .card{
+    background:#f7fbfc;
+    border-radius:16px;
+    padding:18px 20px;
+    box-shadow:inset 0 0 10px rgba(0,0,0,0.03);
+  }
+
+  h2{
+    color:#1e6091; margin-bottom:12px;
+    font-size:1.05rem;
+    border-bottom:2px solid #a9d6e5;
+    padding-bottom:8px
+  }
+
+  .campo{ display:flex; flex-direction:column; margin-bottom:12px }
+  .campo label{ font-weight:600; color:#1e6091; margin-bottom:6px; font-size:0.95rem }
+  .campo input, .campo textarea, .campo select{
+    border:2px solid #d6eaf8; border-radius:10px; padding:10px;
+    transition:all .2s; font-size:15px; background:white;
+  }
+  .campo input:focus, .campo textarea:focus, .campo select:focus{
+    border-color:#38a3a5; box-shadow:0 0 6px rgba(56,163,165,0.18); outline:none;
+  }
+
+  .subgrid{ display:flex; gap:12px; align-items:center }
+  .subgrid .campo{ flex:1; margin-bottom:0 }
+
+  small.error{ color:#e63946; font-size:13px; margin-top:6px; display:none }
+
+  button{
+    width:100%; background:#38a3a5; color:#fff;
+    border:none; border-radius:12px;
+    padding:14px; font-size:16px; font-weight:600;
+    cursor:pointer; transition:0.25s;
+    margin-top:12px;
+  }
+  button:hover{ background:#22577a; transform:scale(1.02) }
+
+  #mensajeFinal{ text-align:center; font-weight:700; margin-top:14px }
+  .exito{ color:#2a9d8f } .error-final{ color:#e63946 }
+
+  /* ===== FOOTER ===== */
+  .footer{
+    width:100%;
+    background:#0f2d52;
+    color:white;
+    padding:40px 20px;
+    margin-top:30px;
+  }
+  .footer-content{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+  .footer-col{ flex:1; min-width:240px }
+  .footer h3, .footer h4{ margin-bottom:10px; font-size:1.1rem; font-weight:700 }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:900px){
+    .page-inner{flex-direction:column;align-items:center}
+  }
+
+  @media (max-width:600px){
+    .navbar{padding:8px 16px;height:72px}
+    .logo img{width:54px;height:54px}
+    .logo h1{font-size:1.2rem}
+    .nav-links a{font-size:0.95rem;padding:8px 10px}
+    .submenu{gap:12px;padding:10px;font-size:0.9rem}
+    .container{padding:22px 16px;border-radius:14px}
+    h1{font-size:1.4rem}
+    .footer-content{text-align:center;flex-direction:column;align-items:center}
+  }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+      <div class="logo">
+          <img src="logomeow.jpg" alt="Logo">
+          <h1>MeowWoof</h1>
+      </div>
+
+      <nav class="nav-links">
+          <a href="Pagina_principal.php" class="btn-inicio">Inicio</a>
+          <a href="contacto.html">Contacto</a>
+      </nav>
+  </header>
+
+  <!-- SUBMENÚ -->
+  <div class="submenu">
+      <a href="perros.html">Perros</a>
+      <a href="gatos.html">Gatos</a>
+      <a href="recomendaciones.html">Recomendaciones</a>
+      <a href="dejar.html">Dejar Mascota</a>
+      <a href="quienes_somos.html">¿Quiénes somos?</a>
+      <a href="dona.html">Dona</a>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="page-inner">
+    <div class="container">
+
+      <h1>Formulario para dejar una mascota 🐾</h1>
+
+      <form id="formMascota" action="procesar_mascota.php" method="POST" novalidate>
+
+        <div class="grid-datos">
+
+          <div class="card">
+            <h2>Datos del responsable</h2>
+
+            <div class="campo">
+              <label>Nombre del responsable:</label>
+              <input type="text" name="nombre" id="nombre"
+                     required
+                     pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$">
+              <small class="error"></small>
+            </div>
+
+            <div class="campo">
+              <label>Dirección:</label>
+              <input type="text" name="direccion" id="direccion" required minlength="5">
+              <small class="error"></small>
+            </div>
+
+            <div class="campo">
+              <label>Teléfono fijo:</label>
+              <input type="tel" name="telefono" id="telefono"
+                     required pattern="^[0-9]{10}$" maxlength="10">
+              <small class="error"></small>
+            </div>
+
+            <div class="subgrid">
+              <div class="campo">
+                <label>Edad:</label>
+                <input type="number" name="edad" id="edad" min="18" max="99" required>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label>Fecha:</label>
+                <input type="date" name="fecha" id="fecha" required>
+                <small class="error"></small>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label>Motivo:</label>
+              <textarea name="motivo" id="motivo" rows="2" required></textarea>
+              <small class="error"></small>
+            </div>
+
+          </div>
+
+          <div class="card">
+            <h2>Datos del animalito</h2>
+
+            <div class="campo">
+              <label>Nombre del animalito:</label>
+              <input type="text" name="nombreAnimal" id="nombreAnimal"
+              required pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,20}$">
+              <small class="error"></small>
+            </div>
+
+            <div class="subgrid">
+              <div class="campo">
+                <label>Edad:</label>
+                <input type="number" name="edadAnimal" id="edadAnimal" min="0" max="30" required>
+                <small class="error"></small>
+              </div>
+
+              <div class="campo">
+                <label>Tamaño:</label>
+                <select name="tamano" id="tamano" required>
+                  <option value="">Seleccione...</option>
+                  <option>Pequeño</option>
+                  <option>Mediano</option>
+                  <option>Grande</option>
+                </select>
+                <small class="error"></small>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label>Raza:</label>
+              <input type="text" name="raza" id="raza" required>
+              <small class="error"></small>
+            </div>
+
+            <div class="campo">
+              <label>Historial médico:</label>
+              <textarea name="historial" id="historial" rows="3"></textarea>
+              <small class="error"></small>
+            </div>
+
+          </div>
+
+        </div>
+
+        <button type="submit">Enviar formulario</button>
+        <p id="mensajeFinal"></p>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-col">
+        <h3>© 2025 MeowWoof</h3>
+        <p>Desarrollado por <strong>Daniel Ahuatzi Magdaleno</strong> y <strong>Kimberly Dánica Sánchez Cabrera</strong>.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Lunes a Viernes — 10:00 AM a 7:00 PM</p>
+        <p>Sábados — 11:30 AM a 5:30 PM</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ubicación</h4>
+        <p>Plaza de la Constitución No. 3, Col. Centro, Tlaxcala, México.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================== VALIDACIÓN ===================== -->
+  <script>
+    const form = document.getElementById('formMascota');
+    const inputs = form.querySelectorAll("input, textarea, select");
+    const mensajeFinal = document.getElementById("mensajeFinal");
+
+    inputs.forEach(input => {
+      input.addEventListener("input", () => validarCampo(input));
+      input.addEventListener("blur", () => validarCampo(input));
+    });
+
+    const telefono = document.getElementById("telefono");
+    telefono.addEventListener("input", () => {
+      telefono.value = telefono.value.replace(/[^0-9]/g, "").slice(0, 10);
+    });
+
+    function validarCampo(input) {
+      const error = input.nextElementSibling;
+      if (!error || error.tagName.toLowerCase() !== "small") return;
+
+      if (input.validity.valueMissing) {
+        error.textContent = "Este campo es obligatorio";
+        error.style.display = "block";
+      } 
+      else if (input.validity.patternMismatch) {
+        if (input.id === "nombre" || input.id === "nombreAnimal") {
+          error.textContent = "Ingrese un nombre válido (solo letras y espacios)";
+        } else if (input.id === "telefono") {
+          error.textContent = "Debe tener exactamente 10 dígitos";
+        } else {
+          error.textContent = "Formato incorrecto";
+        }
+        error.style.display = "block";
+      }
+      else if (input.validity.tooShort) {
+        error.textContent = "Texto demasiado corto";
+        error.style.display = "block";
+      }
+      else if (input.validity.rangeUnderflow || input.validity.rangeOverflow) {
+        error.textContent = "Valor fuera de rango";
+        error.style.display = "block";
+      }
+      else {
+        error.textContent = "";
+        error.style.display = "none";
+      }
+    }
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      let valido = true;
+
+      inputs.forEach(i => {
+        validarCampo(i);
+        if (!i.checkValidity()) valido = false;
+      });
+
+      if (!valido) {
+        mensajeFinal.textContent = "Corrige los errores antes de enviar";
+        mensajeFinal.className = "error-final";
+        return;
+      }
+
+      const datos = new FormData(form);
+      const respuesta = await fetch("procesar_mascota.php", {
+        method: "POST",
+        body: datos
+      });
+
+      const texto = await respuesta.text();
+
+      if (texto.includes("correctamente")) {
+        mensajeFinal.textContent = "Formulario enviado correctamente";
+        mensajeFinal.className = "exito";
+        form.reset();
+        document.querySelectorAll("small.error").forEach(e => e.textContent = "");
+      } else {
+        mensajeFinal.textContent = "Ocurrió un error al enviar el formulario";
+        mensajeFinal.className = "error-final";
+      }
+    });
+  </script>
+
+</body>
+</html>

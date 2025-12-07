@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Únete a MeowWoof</title>
+  <link rel="stylesheet" href="crear_cuenta.css">
+</head>
+<body>
+  <div class="contenedor">
+    <h1>Únete a MeowWoof</h1>
+
+    <form id="formulario">
+      <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+      <small id="errorNombre" class="error"></small>
+
+      <input type="text" id="email" name="email" placeholder="Email">
+      <small id="errorEmail" class="error"></small>
+
+      <input type="text" id="telefono" name="telefono" placeholder="Teléfono">
+      <small id="errorTelefono" class="error"></small>
+
+      <div class="password-container">
+        <input type="password" id="password" name="password" placeholder="Contraseña">
+        <span class="toggle-password">👁‍🗨</span>
+      </div>
+      <small id="errorPassword" class="error"></small>
+
+      <button type="submit">Crear cuenta</button>
+    </form>
+
+    <p id="mensajeFinal" class="exito"></p>
+
+    <button class="btn-regresar" onclick="location.href='MeowWoof.html'">⟵ Regresar</button>
+  </div>
+
+  <script>
+    const formulario = document.getElementById('formulario');
+    const nombre = document.getElementById('nombre');
+    const email = document.getElementById('email');
+    const telefono = document.getElementById('telefono');
+    const password = document.getElementById('password');
+    const mensajeFinal = document.getElementById('mensajeFinal');
+
+    const errorNombre = document.getElementById('errorNombre');
+    const errorEmail = document.getElementById('errorEmail');
+    const errorTelefono = document.getElementById('errorTelefono');
+    const errorPassword = document.getElementById('errorPassword');
+
+    //  Expresiones regulares
+    const NombreRegex = /^[A-Za-zÁÉÍÓÚÑáéíóúñ\s]{3,40}$/;
+    const EmailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    const TelefonoRegex = /^[0-9]{10}$/;
+    const PasswordRegex = /^.{6,}$/;
+
+    //  Validación en tiempo real
+    nombre.addEventListener('input', () => {
+      if (nombre.value.length > 40) {
+        nombre.value = nombre.value.slice(0, 40);
+        errorNombre.textContent = "Máximo 40 caracteres.";
+      } else if (!NombreRegex.test(nombre.value)) {
+        errorNombre.textContent = "Solo letras (mínimo 3 caracteres).";
+      } else {
+        errorNombre.textContent = "";
+      }
+    });
+
+    email.addEventListener('input', () => {
+      errorEmail.textContent = EmailRegex.test(email.value) ? "" : "Formato de email inválido.";
+    });
+
+    telefono.addEventListener('input', () => {
+      if (telefono.value.length > 10) {
+        telefono.value = telefono.value.slice(0, 10);
+      }
+      errorTelefono.textContent = TelefonoRegex.test(telefono.value) ? "" : "Debe tener 10 dígitos.";
+    });
+
+    password.addEventListener('input', () => {
+      errorPassword.textContent = PasswordRegex.test(password.value)
+        ? "" : "Debe tener al menos 6 caracteres.";
+    });
+
+    // Mostrar/ocultar contraseña
+    document.querySelector('.toggle-password').addEventListener('click', () => {
+      password.type = password.type === "password" ? "text" : "password";
+    });
+
+    formulario.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Verificación antes de enviar
+      if (!NombreRegex.test(nombre.value) ||
+          !EmailRegex.test(email.value) ||
+          !TelefonoRegex.test(telefono.value) ||
+          !PasswordRegex.test(password.value)) {
+        mensajeFinal.textContent = "Por favor corrige los errores antes de enviar.";
+        mensajeFinal.style.color = "red";
+        return;
+      }
+
+      const datos = new FormData(formulario);
+      fetch('registrar.php', {
+        method: 'POST',
+        body: datos
+      })
+      .then(response => response.text())
+      .then(data => {
+        mensajeFinal.innerHTML = data;
+
+        // **Aquí solo cambió ESTO**
+        if (data.includes("Formulario enviado correctamente")) {
+          setTimeout(() => {
+            window.location.href = "login.html";
+          }, 1000);
+        }
+      })
+      .catch(() => {
+        mensajeFinal.textContent = "Error en el servidor.";
+        mensajeFinal.style.color = "red";
+      });
+    });
+  </script>
+</body>
+</html>
+

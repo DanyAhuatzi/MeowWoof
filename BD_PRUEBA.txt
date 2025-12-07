@@ -1,0 +1,12 @@
+cd/
+cd xampp
+cd mysql
+cd bin
+MySQL -h localhost -u root -p
+create database bd_prueba;
+use bd_prueba;;
+show databases;
+create table usuarios (id int (4), nombre varchar (30), apellidos varchar (80), correo varchar (100), usuario varchar (20), clave varchar (20), telefono int(10));
+ALTER TABLE usuarios add primary key (id);
+ALTER TABLE usuarios MODIFY COLUMN id INT AUTO_INCREMENT;
+DESCRIBE usuarios;

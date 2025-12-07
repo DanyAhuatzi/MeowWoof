@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de adopción</title>
+  <link rel="stylesheet" href="form_adopcion.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Formulario de adopción</h1>
+
+    <form id="formAdopcion" action="procesar_adopcion.php" method="POST" novalidate>
+      <div class="grid">
+
+        <!-- DATOS DEL RESPONSABLE -->
+        <div class="card">
+          <h2>Datos del responsable</h2>
+
+          <div class="campo">
+            <label>Nombre del responsable de la adopción:</label>
+            <input 
+              type="text" 
+              name="nombre" 
+              id="nombre" 
+              required
+              pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$"
+              placeholder="Ej. Ana López">
+            <small class="error"></small>
+          </div>
+
+          <div class="campo">
+            <label>Dirección:</label>
+            <input 
+              type="text" 
+              name="direccion" 
+              id="direccion" 
+              required 
+              minlength="5" 
+              placeholder="Ejemplo: Calle 7, col. El Alto">
+            <small class="error"></small>
+          </div>
+
+          <div class="campo">
+            <label>Teléfono fijo:</label>
+            <input 
+              type="tel" 
+              name="telefono" 
+              id="telefono"
+              required 
+              pattern="^[0-9]{10}$"
+              maxlength="10"
+              placeholder="Ejemplo: 2461234567"
+              inputmode="numeric">
+            <small class="error"></small>
+          </div>
+
+          <div class="mini-grid">
+            <div class="campo">
+              <label>Edad:</label>
+              <input type="number" name="edad" id="edad" min="18" max="99" required>
+              <small class="error"></small>
+            </div>
+            <div class="campo">
+              <label>Fecha:</label>
+              <input type="date" name="fecha" id="fecha" required>
+              <small class="error"></small>
+            </div>
+          </div>
+        </div>
+
+        <!-- PREGUNTAS -->
+        <div class="card">
+          <h2>Preguntas y respuestas</h2>
+
+          <div class="campo">
+            <label>¿Por qué desea adoptar una mascota?</label>
+            <textarea name="motivo" id="motivo" rows="2" required minlength="5" placeholder="Explique brevemente..."></textarea>
+            <small class="error"></small>
+          </div>
+
+          <div class="campo">
+            <label>¿Actualmente tiene otros animales?</label>
+            <div class="opciones">
+              <label><input type="radio" name="animales" value="si" required> Sí</label>
+              <label><input type="radio" name="animales" value="no" required> No</label>
+            </div>
+            <small class="error"></small>
+          </div>
+
+          <div class="campo">
+            <label>Cuidados que estaría dispuesto a dar:</label>
+            <div class="cuidados-grid">
+              <label><input type="checkbox" name="cuidados[]" value="Visitas periódicas al veterinario"> Visitas periódicas al veterinario</label>
+              <label><input type="checkbox" name="cuidados[]" value="Vacunación y vitaminas"> Vacunación y vitaminas</label>
+              <label><input type="checkbox" name="cuidados[]" value="Paseos con correa"> Paseos con correa</label>
+              <label><input type="checkbox" name="cuidados[]" value="Collar con placa de identificación"> Collar con placa de identificación</label>
+              <label><input type="checkbox" name="cuidados[]" value="Agua limpia todos los días"> Agua limpia todos los días</label>
+              <label><input type="checkbox" name="cuidados[]" value="Comida diaria"> Comida diaria</label>
+              <label><input type="checkbox" name="cuidados[]" value="Desparasitación periódica"> Desparasitación periódica</label>
+              <label><input type="checkbox" name="cuidados[]" value="Cepillado de pelo semanal"> Cepillado de pelo semanal</label>
+              <label><input type="checkbox" name="cuidados[]" value="Limpieza constante"> Limpieza constante</label>
+              <label><input type="checkbox" name="cuidados[]" value="Alimentación solo con croquetas"> Alimentación solo con croquetas</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Enviar solicitud</button>
+
+      <!-- BOTÓN REGRESAR -->
+      <a href="perros.html" class="btn-regresar">Regresar</a>
+
+      <p id="mensajeFinal"></p>
+    </form>
+  </div>
+
+  <!-- ================= JS DE VALIDACIÓN ================= -->
+  <script>
+    const form = document.getElementById('formAdopcion');
+    const inputs = form.querySelectorAll('input, textarea, select');
+    const mensajeFinal = document.getElementById('mensajeFinal');
+
+    // Validación en tiempo real
+    inputs.forEach(input => {
+      input.addEventListener('input', () => validarCampo(input));
+      input.addEventListener('blur', () => validarCampo(input));
+    });
+
+    function validarCampo(input) {
+      const error = input.nextElementSibling;
+      if (!error || error.tagName.toLowerCase() !== "small") return;
+
+      if (input.validity.valueMissing) {
+        error.textContent = "Este campo es obligatorio.";
+        error.style.display = "block";
+      } else if (input.validity.patternMismatch) {
+        if (input.id === "nombre")
+          error.textContent = "Ingrese un nombre válido (solo letras y espacios).";
+        else if (input.id === "telefono")
+          error.textContent = "Debe contener exactamente 10 dígitos.";
+        else
+          error.textContent = "Formato incorrecto.";
+        error.style.display = "block";
+      } else if (input.validity.tooShort) {
+        error.textContent = "Texto demasiado corto.";
+        error.style.display = "block";
+      } else if (input.validity.rangeUnderflow || input.validity.rangeOverflow) {
+        error.textContent = "Valor fuera de rango.";
+        error.style.display = "block";
+      } else {
+        error.textContent = "";
+        error.style.display = "none";
+      }
+    }
+
+    // Envío del formulario
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      let valido = true;
+      inputs.forEach(input => {
+        validarCampo(input);
+        if (!input.checkValidity()) valido = false;
+      });
+
+      if (!valido) {
+        mensajeFinal.textContent = "Corrige los errores antes de enviar.";
+        mensajeFinal.className = "error-final";
+        return;
+      }
+
+      const datos = new FormData(form);
+      const respuesta = await fetch('procesar_adopcion.php', {
+        method: 'POST',
+        body: datos
+      });
+
+      const texto = await respuesta.text();
+      if (texto.includes("correctamente")) {
+        mensajeFinal.textContent = "Formulario enviado correctamente";
+        mensajeFinal.className = "exito";
+        form.reset();
+      } else {
+        mensajeFinal.textContent = "Ocurrió un error al enviar el formulario";
+        mensajeFinal.className = "error-final";
+      }
+    });
+  </script>
+
+</body>
+</html>

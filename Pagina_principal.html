@@ -1,0 +1,62 @@
+<?php
+session_start();
+
+// Si no hay sesión activa → mandar a login
+if (!isset($_SESSION['id'])) {
+    header("Location: login.html");
+    exit();
+}
+
+$nombreUsuario = $_SESSION['nombre'];
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeowWoof</title>
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+  <!-- ENCABEZADO SUPERIOR -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="logomeow.jpg" alt="Logo MeowWoof">
+      <h1>MeowWoof</h1>
+    </div>
+
+    <nav class="nav-links">
+      <a href="contacto.html">Contacto</a>
+
+      <!-- ICONO DE PERFIL + USUARIO LOGUEADO -->
+      <div class="perfil-box">
+        <img src="icono_generico.png" class="icono-perfil">
+        <span class="nombre-usuario">
+          <?php echo $nombreUsuario; ?>
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  
+  <div class="submenu">
+    <a href="perros.html">Perros</a>
+    <a href="gatos.html">Gatos</a>
+    <a href="recomendaciones.html">Recomendaciones</a>
+    <a href="adopta.html">Adopta</a>
+    <a href="dejar.html">Dejar Mascota</a>
+    <a href="quienes_somos.html">¿Quiénes somos?</a>
+    <a href="dona.html">Dona</a>
+    <a href="ubicacion.html">Ubicación</a>
+    <a href="horarios.html">Horarios</a>
+  </div>
+
+
+  <section class="imagen-principal">
+    <img src="imagen_prin2.png" alt="Perros y gatos">
+  </section>
+
+</body>
+</html>

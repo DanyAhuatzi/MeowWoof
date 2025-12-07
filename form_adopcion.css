@@ -1,0 +1,165 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #eaf7fb;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #004c6d;
+  margin-bottom: 30px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  min-width: 400px;
+  background: #f8fdff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  border: 1px solid #d2e8f5;
+}
+
+.card h2 {
+  color: #0078a6;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #b9e1f1;
+  padding-bottom: 5px;
+}
+
+.campo {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: 600;
+  color: #004b63;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #bcd9e3;
+  margin-top: 5px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+textarea {
+  resize: none;
+}
+
+.mini-grid {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  display: block;
+  margin: 30px auto 10px;
+  padding: 12px 25px;
+  background: #00a1e6;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #007bb5;
+}
+
+small.error {
+  display: none;
+  color: #c00;
+  font-size: 13px;
+}
+
+#mensajeFinal {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+#mensajeFinal.exito {
+  color: #008f39;
+}
+
+#mensajeFinal.error-final {
+  color: #c00;
+}
+
+/* === CHECKBOXES SIMÉTRICOS Y ALINEADOS === */
+.cuidados-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+  margin-top: 10px;
+}
+
+.cuidados-grid label {
+  background: #e9f7fb;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #c8e6ee;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.1s;
+  min-height: 45px;
+  box-sizing: border-box;
+}
+
+.cuidados-grid label input[type="checkbox"] {
+  accent-color: #00a1e6;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.cuidados-grid label:hover {
+  background: #d8f1f8;
+  transform: scale(1.02);
+}
+
+.cuidados-grid label span {
+  flex: 1;
+  text-align: left;
+}
+.btn-regresar {
+  display: block;
+  width: fit-content;
+  margin: 20px auto 0;
+  background: #0078ff;
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-regresar:hover {
+  background: #005fcc;
+}

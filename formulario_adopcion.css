@@ -1,0 +1,162 @@
+/* Fuentes desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@400;600&display=swap');
+
+/* Estilo general */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #caf0f8, #ffffff);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Contenedor principal */
+.container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  max-width: 1100px;
+  width: 95%;
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  color: #1a5276;
+  font-family: 'Fredoka', sans-serif;
+  margin-bottom: 30px;
+}
+
+/* Rejilla adaptable */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 25px;
+}
+
+/* Tarjetas */
+.card {
+  background: #f8fdff;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.02);
+}
+
+/* Subtítulos */
+h2 {
+  color: #2a9d8f;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #ade8f4;
+  padding-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+/* Campos del formulario */
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.campo label {
+  font-weight: 600;
+  color: #1a5276;
+  margin-bottom: 4px;
+}
+.campo input,
+.campo textarea,
+.campo select {
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #d6eaf8;
+  transition: 0.3s;
+  font-size: 15px;
+}
+
+/* Efecto al enfocar */
+.campo input:focus,
+.campo textarea:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 6px rgba(0, 180, 216, 0.4);
+  outline: none;
+}
+
+/* Mini grid y opciones */
+.mini-grid {
+  display: flex;
+  gap: 15px;
+}
+.opciones {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+/* Cuidados (checkbox tipo tarjeta) */
+.cuidados {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.cuidados label {
+  background: #eaf6f6;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.cuidados label:hover {
+  background: #caf0f8;
+  transform: scale(1.02);
+}
+
+/* Mensajes de error */
+small.error {
+  color: #e63946;
+  font-size: 13px;
+  margin-top: 3px;
+  display: none;
+}
+
+/* Botón principal */
+button {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #00b4d8;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #0077b6;
+  transform: scale(1.03);
+}
+
+/* Mensajes finales */
+#mensajeFinal {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: bold;
+}
+.exito {
+  color: #2a9d8f;
+}
+.error-final {
+  color: #e63946;
+}

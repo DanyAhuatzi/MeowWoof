@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial del Perro</title>
+  <link rel="stylesheet" href="historial-perros.css">
+</head>
+<body>
+  <header>
+    <h1> Historial del Perro</h1>
+  </header>
+
+  <main class="contenedor">
+    <section class="info-perro">
+      <img src="" alt="Perro" class="foto-perro">
+      <div class="detalles">
+        <h2></h2>
+      </div>
+    </section>
+
+    <div class="botones">
+      <a href="perros.html" class="btn-volver">← Volver a adopciones</a>
+      <a href="Adopta.html" class="btn-adoptar">Adoptar</a>
+    </div>
+  </main>
+
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const perro = urlParams.get('perro');
+
+    const datosPerros = {
+      firulais:{nombre:"Firulais", raza:"Labrador", edad:"2 años", tamaño:"Mediano", sexo:"Macho", vacunas:"Completas", ciudad:"Guadalajara", descripcion:"Muy cariñoso y juguetón.", foto:"2.jpg"},
+      rocky:{nombre:"Rocky", raza:"Husky", edad:"3 años", tamaño:"Grande", sexo:"Macho", vacunas:"Completas", ciudad:"Monterrey", descripcion:"Energético, le encanta la nieve.", foto:"4-1.webp"},
+      max:{nombre:"Max", raza:"Chihuahua", edad:"1 año", tamaño:"Pequeño", sexo:"Macho", vacunas:"Completas", ciudad:"CDMX", descripcion:"Pequeño pero valiente y juguetón.", foto:"6.jpg"},
+      toby:{nombre:"Toby", raza:"Golden Retriever", edad:"4 años", tamaño:"Grande", sexo:"Macho", vacunas:"Completas", ciudad:"Guadalajara", descripcion:"Amigable y le encanta correr.", foto:"8.jpg"},
+      lucky:{nombre:"Lucky", raza:"Labrador", edad:"6 meses", tamaño:"Mediano", sexo:"Macho", vacunas:"Parcial", ciudad:"CDMX", descripcion:"Cachorro juguetón y curioso.", foto:"10.webp"},
+      balu:{nombre:"Balu", raza:"Husky", edad:"2 años", tamaño:"Grande", sexo:"Macho", vacunas:"Completas", ciudad:"Monterrey", descripcion:"Muy activo y amigable.", foto:"12.jpeg"},
+      bruno:{nombre:"Bruno", raza:"Chihuahua", edad:"3 años", tamaño:"Pequeño", sexo:"Macho", vacunas:"Completas", ciudad:"CDMX", descripcion:"Pequeño y valiente.", foto:"14.webp"},
+      rex:{nombre:"Rex", raza:"Golden Retriever", edad:"1 año", tamaño:"Grande", sexo:"Macho", vacunas:"Parcial", ciudad:"Guadalajara", descripcion:"Juguetón y sociable.", foto:"16.jpg"},
+      simba:{nombre:"Simba", raza:"Labrador", edad:"5 años", tamaño:"Mediano", sexo:"Macho", vacunas:"Completas", ciudad:"CDMX", descripcion:"Amistoso y calmado.", foto:"18.jpeg"},
+      zeus:{nombre:"Zeus", raza:"Husky", edad:"8 meses", tamaño:"Grande", sexo:"Macho", vacunas:"Parcial", ciudad:"Monterrey", descripcion:"Cachorro activo y juguetón.", foto:"20.jpg"}
+    };
+
+    if(datosPerros[perro]){
+      const info = datosPerros[perro];
+      document.querySelector('.foto-perro').src = info.foto;
+      document.querySelector('.foto-perro').alt = info.nombre;
+      document.querySelector('.detalles').innerHTML = `
+        <h2>Nombre: ${info.nombre}</h2>
+        <p><strong>Raza:</strong> ${info.raza}</p>
+        <p><strong>Edad:</strong> ${info.edad}</p>
+        <p><strong>Tamaño:</strong> ${info.tamaño}</p>
+        <p><strong>Sexo:</strong> ${info.sexo}</p>
+        <p><strong>Vacunas:</strong> ${info.vacunas}</p>
+        <p><strong>Ciudad:</strong> ${info.ciudad}</p>
+        <p><strong>Descripción:</strong> ${info.descripcion}</p>
+      `;
+    } else {
+      document.querySelector('.detalles').innerHTML = "<p>Perro no encontrado.</p>";
+    }
+  </script>
+</body>
+</html>

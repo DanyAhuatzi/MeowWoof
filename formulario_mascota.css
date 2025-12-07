@@ -1,0 +1,189 @@
+/* Fuentes principales */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@400;600&display=swap');
+
+/* Estilo general */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #dff9fb, #c7ecee);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Contenedor principal */
+.container {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 30px 40px;
+  width: 95%;
+  max-width: 1000px;
+}
+
+/* Título principal */
+h1 {
+  text-align: center;
+  color: #0a3d62;
+  margin-bottom: 30px;
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Rejilla de datos */
+.grid-datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 25px;
+}
+
+/* Tarjetas de sección */
+.card {
+  background: #f7fbfc;
+  border-radius: 16px;
+  padding: 20px 25px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Subtítulos */
+h2 {
+  color: #1e6091;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #a9d6e5;
+  padding-bottom: 6px;
+}
+
+/* Campos del formulario */
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+.campo label {
+  font-weight: 600;
+  color: #1e6091;
+  margin-bottom: 4px;
+}
+.campo input,
+.campo textarea,
+.campo select {
+  border: 2px solid #d6eaf8;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all 0.3s;
+  font-size: 15px;
+}
+
+/* Efecto al enfocar */
+.campo input:focus,
+.campo textarea:focus,
+.campo select:focus {
+  border-color: #38a3a5;
+  box-shadow: 0 0 6px rgba(56,163,165,0.4);
+  outline: none;
+}
+
+/* Subrejilla para campos pequeños */
+.subgrid {
+  display: flex;
+  gap: 15px;
+}
+
+/* Mensajes de error */
+small.error {
+  color: #e63946;
+  font-size: 13px;
+  margin-top: 4px;
+  display: none;
+}
+
+/* Botón principal */
+button {
+  width: 100%;
+  background: #38a3a5;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+button:hover {
+  background: #22577a;
+  transform: scale(1.03);
+}
+
+/* Mensaje final */
+#mensajeFinal {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.exito { color: #2a9d8f; }
+.error-final { color: #e63946; }
+/* ===========================
+   FOOTER ESTILO AZUL ELEGANTE
+   =========================== */
+
+.footer {
+  width: 100%;
+  background: #0f2d52; /* azul fuerte elegante */
+  color: white;
+  padding: 40px 20px;
+  margin-top: 60px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap; /* Responsivo */
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 250px; /* Mantiene estructura en pantallas pequeñas */
+}
+
+.footer h3, 
+.footer h4 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.footer p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* ==== RESPONSIVIDAD ===== */
+@media (max-width: 900px) {
+  .footer-content {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 30px 15px;
+  }
+
+  .footer-col {
+    min-width: 100%;
+  }
+}
+

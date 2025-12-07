@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gatos en Adopción</title>
+  <link rel="stylesheet" href="gatos.css">
+  <link rel="stylesheet" href="footer.css">
+
+</head>
+<!-- ======= HEADER ======= -->
+<link rel="stylesheet" href="header.css">
+
+<header class="navbar">
+    <div class="logo">
+        <img src="logomeow.jpg" alt="Logo">
+        <h1>MeowWoof</h1>
+    </div>
+
+    <nav class="nav-links">
+        <a href="Pagina_principal.php" class="btn-inicio">Inicio</a>
+        <a href="contacto.html">Contacto</a>
+    </nav>
+</header>
+
+<!-- ======= SUBMENÚ ======= -->
+<div class="submenu">
+    <a href="perros.html">Perros</a>
+    <a href="gatos.html">Gatos</a>
+    <a href="recomendaciones.html">Recomendaciones</a>
+    <a href="dejar.html">Dejar Mascota</a>
+    <a href="quienes_somos.html">¿Quiénes somos?</a>
+    <a href="dona.html">Dona</a>
+
+</div>
+<body>
+  <header>
+   
+  </header>
+
+  <main class="contenedor">
+    <!-- FILTROS -->
+    <aside class="filtros">
+      <h3>Filtrar por:</h3>
+      <label>Ciudad o Municipio:</label>
+      <input type="text" placeholder="Ejemplo: Guadalajara" id="filtroCiudad">
+      
+      <label>Raza:</label>
+      <select id="filtroRaza">
+        <option>Todas</option>
+        <option>Siames</option>
+        <option>Persa</option>
+        <option>Maine Coon</option>
+        <option>Bengala</option>
+      </select>
+
+      <label>Edad:</label>
+      <div class="checkboxes" id="filtroEdad">
+        <label><input type="checkbox" value="Cachorro"> Cachorro</label>
+        <label><input type="checkbox" value="Joven"> Joven</label>
+        <label><input type="checkbox" value="Adulto"> Adulto</label>
+      </div>
+
+      <button class="btn-filtrar">Aplicar filtros</button>
+    </aside>
+
+    <!-- GALERÍA DE GATOS -->
+    <section class="galeria">
+      <div class="tarjeta" data-nombre="luna" data-raza="siames" data-edad="joven" data-ciudad="guadalajara">
+        <img src="siam_1.png" alt="Luna">
+        <h4>Luna</h4>
+        <a href="historial-gatos.html?gato=luna" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="milo" data-raza="persa" data-edad="adulto" data-ciudad="cdmx">
+        <img src="persa1.webp" alt="Milo">
+        <h4>Milo</h4>
+        <a href="historial-gatos.html?gato=milo" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="simba" data-raza="maine coon" data-edad="joven" data-ciudad="monterrey">
+        <img src="maine1.webp" alt="Simba">
+        <h4>Simba</h4>
+        <a href="historial-gatos.html?gato=simba" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="nala" data-raza="bengala" data-edad="cachorro" data-ciudad="guadalajara">
+        <img src="bengali1.png" alt="Nala">
+        <h4>Nala</h4>
+        <a href="historial-gatos.html?gato=nala" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="leo" data-raza="siames" data-edad="adulto" data-ciudad="cdmx">
+        <img src="siamesadul1.webp" alt="Leo">
+        <h4>Leo</h4>
+        <a href="historial-gatos.html?gato=leo" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="cleo" data-raza="persa" data-edad="cachorro" data-ciudad="monterrey">
+        <img src="persabb1.jpg" alt="Cleo">
+        <h4>Cleo</h4>
+        <a href="historial-gatos.html?gato=cleo" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="toby" data-raza="maine coon" data-edad="adulto" data-ciudad="guadalajara">
+        <img src="maingran1.jpg" alt="Toby">
+        <h4>Toby</h4>
+        <a href="historial-gatos.html?gato=toby" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="lola" data-raza="bengala" data-edad="joven" data-ciudad="cdmx">
+        <img src="benjo1.jpeg" alt="Lola">
+        <h4>Lola</h4>
+        <a href="historial-gatos.html?gato=lola" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="oscar" data-raza="siames" data-edad="cachorro" data-ciudad="monterrey">
+        <img src="siambb1.jpg" alt="Oscar">
+        <h4>Oscar</h4>
+        <a href="historial-gatos.html?gato=oscar" class="btn-historial">Historial</a>
+      </div>
+      <div class="tarjeta" data-nombre="maya" data-raza="persa" data-edad="adulto" data-ciudad="guadalajara">
+        <img src="peradul1.jpeg" alt="Maya">
+        <h4>Maya</h4>
+        <a href="historial-gatos.html?gato=maya" class="btn-historial">Historial</a>
+      </div>
+    </section>
+  </main>
+
+
+
+  <script>
+    const btnFiltrar = document.querySelector('.btn-filtrar');
+    const tarjetas = document.querySelectorAll('.tarjeta');
+
+    btnFiltrar.addEventListener('click', () => {
+      const ciudadVal = document.getElementById('filtroCiudad').value.toLowerCase();
+      const razaVal = document.getElementById('filtroRaza').value.toLowerCase();
+
+      const edadChecks = document.querySelectorAll('#filtroEdad input:checked');
+      const edadVal = Array.from(edadChecks).map(c => c.value.toLowerCase());
+
+      tarjetas.forEach(tarjeta => {
+        const ciudad = tarjeta.dataset.ciudad.toLowerCase();
+        const raza = tarjeta.dataset.raza.toLowerCase();
+        const edad = tarjeta.dataset.edad.toLowerCase();
+
+        const ciudadMatch = ciudadVal === "" || ciudad.includes(ciudadVal);
+        const razaMatch = razaVal === "todas" || raza === razaVal;
+        const edadMatch = edadVal.length === 0 || edadVal.includes(edad);
+
+        tarjeta.style.display = (ciudadMatch && razaMatch && edadMatch) ? "block" : "none";
+      });
+    });
+  </script>
+  <footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <h3>Horarios</h3>
+      <p><strong>Lunes a Viernes:</strong> 10:00 AM – 7:00 PM</p>
+      <p><strong>Sábados:</strong> 11:30 AM – 5:30 PM</p>
+      <p><strong>Domingos:</strong> Cerrado</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Ubicación</h3>
+      <p>Plaza de la Constitución No. 3</p>
+      <p>Colonia Centro</p>
+      <p>C.P. 90000, Tlaxcala de Xicohténcatl</p>
+      <p>Tlaxcala, México</p>
+    </div>
+
+    <div class="footer-section">
+      <h3>Créditos</h3>
+      <p>&copy; 2025 MeowWoof</p>
+      <p>Desarrollado por <strong>Daniel Ahuatzi Magdaleno</strong> y <strong>Kimberly Dánica Sánchez Cabrera</strong>.</p>
+      <p>Todos los derechos reservados.</p>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
+

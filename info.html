@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Información - MeowWoof</title>
+  <link rel="stylesheet" href="info.css" />
+</head>
+<body>
+
+<!-- Botón de Regresar -->
+<a href="portada.html" class="btn-regresar">    
+  Regresar
+</a>
+<!-- Botón de Acceder -->
+<a href="MeowWoof.html" class="btn-acceder">
+  Acceder
+</a>
+
+<section class="contenedor">
+
+  <!-- ENCABEZADO -->
+  <div class="encabezado fade">
+    <h1>Información de MeowWoof</h1>
+    <p>Una plataforma amigable para gestionar adopciones.</p>
+  </div>
+
+  <!-- TARJETAS -->
+  <div class="tarjetas">
+
+    <div class="card slide-up">
+      <div class="img-box">
+        <img src="historial.avif" alt="Ofrecemos" />
+      </div>
+      <h3> ¿Qué ofrece?</h3>
+      <ul>
+        <li>Descripcion breve de las mascotas</li>
+        <li>Historial médico</li>
+        <li>Gestión de adopciones</li>
+        <li>Control de usuarios</li>
+      </ul>
+    </div>
+
+    <div class="card slide-up" style="animation-delay: .2s;">
+      <div class="img-box">
+        <img src="beneficios.jpeg" alt="Beneficios" />
+      </div>
+      <h3> Beneficios</h3>
+      <ul>
+        <li>Organización eficiente</li>
+        <li>Procesos rápidos</li>
+        <li>Información confiable</li>
+        <li>Mejor comunicación</li>
+      </ul>
+    </div>
+
+    <div class="card slide-up" style="animation-delay: .4s;">
+      <div class="img-box">
+        <img src="modulos.jpg" alt="Módulos" />
+      </div>
+      <h3> ¿Cómo se conforma?</h3>
+      <p>
+        Módulos de Mascotas, Adopciones, Historial, Usuarios y Administración.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Animación de aparición
+  window.onload = () => {
+    document.querySelectorAll(".fade, .slide-up").forEach(el => el.classList.add("visible"));
+  };
+</script>
+
+</body>
+</html>

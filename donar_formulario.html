@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donar | MeowWoof</title>
+
+  <style>
+    /* === ESTILOS GENERALES === */
+    body {
+      background: linear-gradient(135deg, #a2c2e0, #f6e6e9);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .tarjeta {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px 35px;
+      width: 400px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    .campo {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      color: #555;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #6a9ae2;
+      box-shadow: 0 0 6px rgba(106, 154, 226, 0.5);
+    }
+
+    .error {
+      color: #e74c3c;
+      font-size: 13px;
+      min-height: 16px;
+    }
+
+    .resultado {
+      text-align: center;
+      color: #2f4c73;
+      font-weight: bold;
+      margin: 15px 0;
+      font-size: 1.1rem;
+    }
+
+    #mensajeFinal {
+      text-align: center;
+      font-weight: 600;
+      margin-top: 15px;
+      min-height: 20px;
+    }
+
+    #mensajeFinal.exito {
+      color: #27ae60;
+    }
+
+    #mensajeFinal.error-final {
+      color: #e74c3c;
+    }
+
+    button {
+      width: 100%;
+      background: #6a9ae2;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #507fd1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="tarjeta">
+    <h2>Formulario de Donación</h2>
+
+    <form id="formDonar" action="procesar_donacion.php" method="POST" novalidate>
+
+      <div class="campo">
+        <label for="nombre">Nombre del titular</label>
+        <input type="text" name="nombre" id="nombre" placeholder="Ej. Juan Pérez" required />
+        <div class="error" id="errorNombre"></div>
+      </div>
+
+      <div class="campo">
+        <label for="tarjeta">Número de tarjeta</label>
+        <input type="text" name="tarjeta" id="tarjeta" maxlength="16" placeholder="1234567812345678" required />
+        <div class="error" id="errorTarjeta"></div>
+      </div>
+
+      <div class="campo">
+        <label for="fecha">Fecha de expiración (MM/AA)</label>
+        <input type="text" name="fecha" id="fecha" maxlength="5" placeholder="MM/AA" required />
+        <div class="error" id="errorFecha"></div>
+      </div>
+
+      <div class="campo">
+        <label for="cvv">CVV</label>
+        <input type="password" name="cvv" id="cvv" maxlength="3" placeholder="123" required />
+        <div class="error" id="errorCVV"></div>
+      </div>
+
+      <div class="campo">
+        <label for="monto">Monto a donar (MXN)</label>
+        <input type="number" name="monto" id="monto" min="1" placeholder="Ej. 500" required />
+        <div class="error" id="errorMonto"></div>
+      </div>
+
+      <div class="resultado" id="resultadoIVA"></div>
+
+      <button type="submit" id="btnDonar">Donar Ahora</button>
+
+      <p id="mensajeFinal"></p>
+    </form>
+
+    <!-- Botón azul centrado para ir a dona.html -->
+    <div style="text-align: center; margin-top: 20px;">
+      <a href="dona.html" 
+         style="
+           display: inline-block;
+           background: #6a9ae2;
+           color: white;
+           padding: 12px 20px;
+           border-radius: 10px;
+           text-decoration: none;
+           font-weight: bold;
+           transition: 0.3s;">
+        Regresar
+      </a>
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById("formDonar");
+    const nombre = document.getElementById("nombre");
+    const tarjeta = document.getElementById("tarjeta");
+    const fecha = document.getElementById("fecha");
+    const cvv = document.getElementById("cvv");
+    const monto = document.getElementById("monto");
+    const resultadoIVA = document.getElementById("resultadoIVA");
+    const mensajeFinal = document.getElementById("mensajeFinal");
+
+    const regexNombre = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?: [A-Za-zÁÉÍÓÚáéíóúÑñ]+)*$/;
+    const regexTarjeta = /^\d{16}$/;
+    const regexFecha = /^(0[1-9]|1[0-2])\/\d{2}$/;
+    const regexCVV = /^\d{3}$/;
+
+    nombre.addEventListener("input", () => {
+      document.getElementById("errorNombre").textContent =
+        regexNombre.test(nombre.value) ? "" : "Solo letras y espacios, mínimo 3 caracteres.";
+    });
+
+    tarjeta.addEventListener("input", () => {
+      tarjeta.value = tarjeta.value.replace(/[^0-9]/g, "");
+      document.getElementById("errorTarjeta").textContent =
+        regexTarjeta.test(tarjeta.value) ? "" : "Debe tener exactamente 16 dígitos.";
+    });
+
+    fecha.addEventListener("input", () => {
+      const error = document.getElementById("errorFecha");
+      if (!regexFecha.test(fecha.value)) {
+        error.textContent = "Formato válido: MM/AA";
+      } else {
+        const [mes, anio] = fecha.value.split("/").map(Number);
+        const hoy = new Date();
+        const mesActual = hoy.getMonth() + 1;
+        const anioActual = Number(hoy.getFullYear().toString().slice(2));
+        if (anio < anioActual || (anio === anioActual && mes < mesActual)) {
+          error.textContent = "La fecha debe ser futura.";
+        } else error.textContent = "";
+      }
+    });
+
+    cvv.addEventListener("input", () => {
+      cvv.value = cvv.value.replace(/[^0-9]/g, "");
+      document.getElementById("errorCVV").textContent =
+        regexCVV.test(cvv.value) ? "" : "Debe tener 3 dígitos.";
+    });
+
+    monto.addEventListener("input", () => {
+      const valor = parseFloat(monto.value);
+      if (isNaN(valor) || valor <= 0) {
+        document.getElementById("errorMonto").textContent = "Ingrese un monto válido mayor a 0.";
+        resultadoIVA.textContent = "";
+      } else {
+        document.getElementById("errorMonto").textContent = "";
+        const iva = valor * 0.042;
+        const total = valor + iva;
+        resultadoIVA.textContent = `IVA (4.2%): $${iva.toFixed(2)} | Total: $${total.toFixed(2)}`;
+      }
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const valido =
+        regexNombre.test(nombre.value) &&
+        regexTarjeta.test(tarjeta.value) &&
+        regexFecha.test(fecha.value) &&
+        regexCVV.test(cvv.value) &&
+        monto.value > 0;
+
+      if (!valido) {
+        mensajeFinal.textContent = "Por favor corrige los errores antes de enviar.";
+        mensajeFinal.className = "error-final";
+        return;
+      }
+
+      const datos = new FormData(form);
+      const resp = await fetch("procesar_donacion.php", { method: "POST", body: datos });
+      const texto = await resp.text();
+
+      if (texto.includes("correctamente")) {
+        mensajeFinal.textContent = "Donación realizada con éxito. ¡Gracias por tu apoyo!";
+        mensajeFinal.className = "exito";
+        form.reset();
+        resultadoIVA.textContent = "";
+      } else {
+        mensajeFinal.textContent = "Error al registrar la donación.";
+        mensajeFinal.className = "error-final";
+      }
+    });
+  </script>
+
+</body>
+</html>

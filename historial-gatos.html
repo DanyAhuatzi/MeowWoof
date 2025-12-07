@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historial del Gato</title>
+  <link rel="stylesheet" href="historial-gatos.css">
+</head>
+<body>
+  <!-- ===== ENCABEZADO DE LA PÁGINA ===== -->
+  <header>
+    <h1> Historial del Gato</h1>
+  </header>
+
+  <!-- ===== CONTENEDOR PRINCIPAL ===== -->
+  <main class="contenedor">
+
+    <!-- ===== SECCIÓN DE INFORMACIÓN DEL GATO ===== -->
+    <section class="info-gato">
+      <!-- Imagen del gato (se actualizará dinámicamente con JavaScript) -->
+      <img src="" alt="Gato" class="foto-gato">
+
+      <!-- Aquí se insertarán los detalles del gato -->
+      <div class="detalles">
+        <h2></h2>
+      </div>
+    </section>
+
+    <!-- ===== BOTONES DE NAVEGACIÓN ===== -->
+    <div class="botones">
+      <!-- Botón para regresar a la página de adopciones -->
+      <a href="gatos.html" class="btn-volver">← Volver a adopciones</a>
+
+      <!-- Botón simulado para adoptar -->
+      <a href="adopta.html" class="btn-adoptar">Adoptar </a>
+    </div>
+  </main>
+
+
+  <!-- ===== SCRIPT PRINCIPAL ===== -->
+  <script>
+    // Se obtiene el parámetro "gato" de la URL, por ejemplo: historial-gatos.html?gato=luna
+    const urlParams = new URLSearchParams(window.location.search);
+    const gato = urlParams.get('gato'); // Guarda el nombre del gato enviado por la URL
+
+    // ===== BASE DE DATOS LOCAL (OBJETO) CON INFORMACIÓN DE LOS GATOS =====
+    const datosGatos = {
+      luna: {nombre:"Luna", raza:"Siames", edad:"2 años", sexo:"Hembra", vacunas:"Completas", ciudad:"Guadalajara", descripcion:"Cariñosa y juguetona.", foto:"siam_2.JPEG"},
+      milo: {nombre:"Milo", raza:"Persa", edad:"3 años", sexo:"Macho", vacunas:"Completas", ciudad:"CDMX", descripcion:"Tranquilo y amistoso.", foto:"persa2.jpeg"},
+      simba: {nombre:"Simba", raza:"Maine Coon", edad:"1 año", sexo:"Macho", vacunas:"Parcial", ciudad:"Monterrey", descripcion:"Activo y curioso.", foto:"maine2.webp"},
+      nala: {nombre:"Nala", raza:"Bengala", edad:"6 meses", sexo:"Hembra", vacunas:"Parcial", ciudad:"Guadalajara", descripcion:"Juguetona y adorable.", foto:"bengali2.jpeg"},
+      leo: {nombre:"Leo", raza:"Siames", edad:"4 años", sexo:"Macho", vacunas:"Completas", ciudad:"CDMX", descripcion:"Sociable y calmado.", foto:"siamesaldul2.jpg"},
+      cleo: {nombre:"Cleo", raza:"Persa", edad:"8 meses", sexo:"Hembra", vacunas:"Parcial", ciudad:"Monterrey", descripcion:"Curiosa y dulce.", foto:"cleo.jpeg"},
+      toby: {nombre:"Toby", raza:"Maine Coon", edad:"3 años", sexo:"Macho", vacunas:"Completas", ciudad:"Guadalajara", descripcion:"Juguetón y amistoso.", foto:"maingran2.jpeg"},
+      lola: {nombre:"Lola", raza:"Bengala", edad:"1 año", sexo:"Hembra", vacunas:"Completas", ciudad:"CDMX", descripcion:"Muy cariñosa.", foto:"benjo2.webp"},
+      oscar: {nombre:"Oscar", raza:"Siames", edad:"6 meses", sexo:"Macho", vacunas:"Parcial", ciudad:"Monterrey", descripcion:"Activo y juguetón.", foto:"siambb2.jpeg"},
+      maya: {nombre:"Maya", raza:"Persa", edad:"5 años", sexo:"Hembra", vacunas:"Completas", ciudad:"Guadalajara", descripcion:"Tranquila y amorosa.", foto:"peradul2.jpeg"}
+    };
+
+    // ===== VALIDACIÓN Y CARGA DE DATOS =====
+    if (datosGatos[gato]) {
+      // Si el gato existe en la "base de datos", obtenemos su información
+      const info = datosGatos[gato];
+
+      // Se actualiza la imagen del gato
+      document.querySelector('.foto-gato').src = info.foto;
+      document.querySelector('.foto-gato').alt = info.nombre;
+
+      // Se insertan los detalles dentro del div .detalles
+      document.querySelector('.detalles').innerHTML = `
+        <h2>Nombre: ${info.nombre}</h2>
+        <p><strong>Raza:</strong> ${info.raza}</p>
+        <p><strong>Edad:</strong> ${info.edad}</p>
+        <p><strong>Sexo:</strong> ${info.sexo}</p>
+        <p><strong>Vacunas:</strong> ${info.vacunas}</p>
+        <p><strong>Ciudad:</strong> ${info.ciudad}</p>
+        <p><strong>Descripción:</strong> ${info.descripcion}</p>
+      `;
+    } else {
+      // Si no se encuentra el gato, se muestra un mensaje de error
+      document.querySelector('.detalles').innerHTML = "<p>Gato no encontrado.</p>";
+    }
+  </script>
+</body>
+</html>

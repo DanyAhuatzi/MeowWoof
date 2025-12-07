@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar sesión</title>
+  <link rel="stylesheet" href="iniciar_sesion.css" />
+</head>
+<body>
+  <div class="login-container">
+    <h1>Iniciar sesión</h1>
+
+    <form id="loginForm" action="validar_login.php" method="POST" novalidate>
+      <div class="input-group">
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <small id="emailError" class="error-message"></small>
+      </div>
+
+      <div class="input-group password-container">
+        <input type="password" name="password" id="password" placeholder="Contraseña" required>
+        <span class="toggle" role="button" aria-label="Mostrar contraseña" onclick="togglePassword()">👁️</span>
+        <small id="passwordError" class="error-message"></small>
+      </div>
+
+      <button type="submit" id="submitBtn">Iniciar sesión</button>
+            <!-- Botón para regresar -->
+      <button type="button" class="btn-regresar" onclick="location.href='MeowWoof.html'">⟵ Regresar</button>
+
+      <!-- Mensaje general que aparece debajo del botón (errores de envío o servidor) -->
+      <div id="formError" class="form-error" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <script>
+    // Elementos
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const emailError = document.getElementById('emailError');
+    const passwordError = document.getElementById('passwordError');
+    const form = document.getElementById('loginForm');
+    const formError = document.getElementById('formError');
+
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    // Validar email en tiempo real
+    emailInput.addEventListener('input', () => {
+      const val = emailInput.value.trim();
+      if (val === "") {
+        emailError.textContent = "El correo es obligatorio.";
+      } else if (!emailRegex.test(val)) {
+        emailError.textContent = "Formato de email incorrecto.";
+      } else {
+        emailError.textContent = "";
+      }
+      clearFormError();
+    });
+
+    // Validar contraseña en tiempo real
+    passwordInput.addEventListener('input', () => {
+      const val = passwordInput.value;
+      if (val.trim() === "") {
+        passwordError.textContent = "La contraseña es obligatoria.";
+      } else if (val.length < 6) {
+        passwordError.textContent = "La contraseña debe tener al menos 6 caracteres.";
+      } else {
+        passwordError.textContent = "";
+      }
+      clearFormError();
+    });
+
+    function togglePassword() {
+      const pass = document.getElementById('password');
+      pass.type = pass.type === 'password' ? 'text' : 'password';
+    }
+
+    form.addEventListener('submit', (e) => {
+      // Ejecuta validaciones finales
+      const emailVal = emailInput.value.trim();
+      const passVal = passwordInput.value;
+
+      if (emailVal === "" || !emailRegex.test(emailVal)) {
+        emailError.textContent = emailVal === "" ? "El correo es obligatorio." : "Formato de email incorrecto.";
+      }
+      if (passVal.trim() === "" || passVal.length < 6) {
+        passwordError.textContent = passVal.trim() === "" ? "La contraseña es obligatoria." : "La contraseña debe tener al menos 6 caracteres.";
+      }
+
+      // Si hay mensajes de error en los inputs, prevenir submit y mostrar texto general
+      if (emailError.textContent || passwordError.textContent) {
+        e.preventDefault();
+        formError.textContent = "Por favor corrige los errores marcados antes de continuar.";
+        formError.classList.add('visible');
+        return;
+      }
+
+      // Si todo  es ok, permitir submit. 
+      formError.textContent = "";
+      formError.classList.remove('visible');
+    });
+
+    function clearFormError() {
+      if (formError.textContent) {
+        formError.textContent = "";
+        formError.classList.remove('visible');
+      }
+    }
+
+    // Si la página fue cargada con ?error=1 (login fallido desde el servidor), mostrar mensaje
+    (function checkServerErrorParam(){
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('error') === '1') {
+        formError.textContent = "Correo o contraseña incorrectos. Intenta de nuevo.";
+        formError.classList.add('visible');
+      } else if (params.get('error') === '2') {
+        // opcional: otro tipo de error 
+        formError.textContent = "Ocurrió un error en el servidor. Intenta más tarde.";
+        formError.classList.add('visible');
+      }
+    })();
+  </script>
+</body>
+</html>

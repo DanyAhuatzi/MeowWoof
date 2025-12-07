@@ -1,0 +1,167 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #e9eaec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.donaciones {
+  width: 100%;
+  max-width: 1200px;
+  background: #f3f4f5;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* ENCABEZADO */
+.encabezado {
+  background-color: #2f4c73;
+  padding: 25px 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.encabezado h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.subtitulo {
+  color: #2f4c73;
+  font-size: 1.3rem;
+  margin: 20px 0 40px;
+}
+
+/* CONTENIDO PRINCIPAL */
+.contenido {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 0 40px 40px;
+  flex-wrap: wrap;
+}
+
+/* TARJETAS */
+.tarjeta {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  text-align: center;
+  width: 240px;
+}
+
+.tarjeta.transferencia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icono-banco {
+  background: #f3f6fa;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.icono-banco img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+}
+
+.tarjeta.transferencia h3 {
+  color: #2f4c73;
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.tarjeta.transferencia .clabe {
+  font-size: 0.95rem;
+  color: #222;
+  line-height: 1.5;
+}
+
+/* TARJETA DE ARTÍCULOS */
+.tarjeta.articulos {
+  text-align: left;
+  width: 280px;
+}
+
+.tarjeta.articulos ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.tarjeta.articulos li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #222;
+}
+
+.cuadro {
+  width: 18px;
+  height: 18px;
+  background-color: #2f4c73;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.boton-donar {
+  background-color: #2f4c73;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+
+/* IMAGEN DE ANIMALES */
+.animales {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  min-width: 300px;
+}
+
+.animales img {
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .contenido {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .animales img {
+    max-width: 250px;
+  }
+}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donaciones - MeowWoof</title>
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* ===== RESET ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f2f6fc;
+    color: #0f2d52;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* ===== NAVBAR ===== */
+  .navbar{
+    background-color:#3b5ea0;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:8px 32px;
+    height:80px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.12);
+    position: sticky;
+    top: 0;
+    z-index: 60;
+  }
+
+  .logo { display:flex; align-items:center; gap: 12px; }
+  .logo img { width:70px; height:70px; border-radius:50%; object-fit:cover; }
+  .logo h1 { font-size:1.6rem; font-weight:700; font-family:'Fredoka',sans-serif; }
+
+  .nav-links { display:flex; gap:14px; }
+  .nav-links a {
+    color:white;
+    padding:10px 14px;
+    border-radius:8px;
+    font-weight:600;
+    transition: .2s;
+  }
+  .nav-links a:hover { background: rgba(255,255,255,0.10); }
+
+  /* ===== SUBMENU ===== */
+  .submenu {
+    background:#eef3fc;
+    padding:14px 10px;
+    display:flex;
+    justify-content:center;
+    gap:32px;
+    font-weight:600;
+    box-shadow:0 2px 4px rgba(0,0,0,0.04);
+  }
+  .submenu a {
+    padding:8px 10px;
+    border-radius:8px;
+    transition:.2s;
+  }
+  .submenu a:hover {
+    background:rgba(59,94,160,0.15);
+    color:#2a4f86;
+  }
+
+  /* ===== CONTENIDO ===== */
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px 45px;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 1100px;
+  }
+
+  .encabezado h1 {
+    text-align:center;
+    font-family:'Fredoka',sans-serif;
+    font-size:2.3rem;
+    font-weight:700;
+    color:#12396b;
+    margin-bottom: 10px;
+  }
+
+  .subtitulo {
+    text-align:center;
+    color:#456ea2;
+    font-weight:600;
+    margin-bottom:26px;
+    font-size:1.2rem;
+  }
+
+  /* ==== TARJETAS ==== */
+  .contenido {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+
+  .tarjeta {
+    background:white;
+    padding:24px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition: transform .2s;
+  }
+  .tarjeta:hover {
+    transform: translateY(-4px);
+  }
+
+  .tarjeta.transferencia img {
+    width:130px;
+    border-radius:12px;
+    margin-bottom:10px;
+  }
+
+  .tarjeta.transferencia p {
+    font-size:1rem;
+    margin-top:6px;
+  }
+
+  .tarjeta.transferencia h3 {
+    margin-top:10px;
+    font-size:1.3rem;
+    color:#12396b;
+  }
+
+  .clabe {
+    margin-top:10px;
+    font-size:1.1rem;
+    font-weight:700;
+    color:#1b4f91;
+  }
+
+  /* === LISTA === */
+  .tarjeta.articulos ul {
+    list-style:none;
+    margin-bottom:20px;
+  }
+  .tarjeta.articulos li {
+    padding:10px 0;
+    font-size:1rem;
+    border-bottom:1px dashed rgba(0,0,0,0.1);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  .cuadro {
+    width:14px;
+    height:14px;
+    background:#3b5ea0;
+    border-radius:4px;
+  }
+
+  /* === BOTÓN === */
+  .boton-donar {
+    background:#3b5ea0;
+    color:white;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:1rem;
+    width:100%;
+    transition:.2s;
+  }
+  .boton-donar:hover {
+    background:#2e4d87;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px){
+    .contenido { grid-template-columns:1fr; }
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background:#0f2d52;
+    padding:40px 20px;
+    color:white;
+    margin-top:30px;
+  }
+
+  .footer-content {
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+
+  .footer-col { flex:1; min-width:240px; }
+  .footer-col h3, .footer-col h4 {
+    color:#a8d1ff;
+    margin-bottom:12px;
+    font-size:1.2rem;
+  }
+
+  .footer-col p {
+    color:#e6f2ff;
+    line-height:1.5;
+    margin-bottom:6px;
+  }
+
+  @media(max-width:700px){
+    .footer-content { text-align:center; }
+  }
+
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="logomeow.jpg" alt="">
+      <h1>MeowWoof</h1>
+    </div>
+    <nav class="nav-links">
+      <a href="Pagina_principal.php" class="btn-inicio">Inicio</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- ========== SUBMENU ========== -->
+  <nav class="submenu">
+    <a href="perros.html">Perros</a>
+    <a href="gatos.html">Gatos</a>
+    <a href="recomendaciones.html">Recomendaciones</a>
+    <a href="dejar.html">Dejar Mascota</a>
+    <a href="quienes_somos.html">¿Quiénes somos?</a>
+    <a href="dona.html">Dona</a>
+  </nav>
+
+  <!-- ========== CONTENIDO ========== -->
+  <main>
+    <div class="wrap">
+
+      <div class="encabezado">
+        <h1>DONACIONES</h1>
+      </div>
+
+      <p class="subtitulo">Una patita de ayuda</p>
+
+      <div class="contenido">
+
+        <!-- Transferencia -->
+        <div class="tarjeta transferencia">
+          <img src="dona.jpg" alt="">
+          <p>Transferencia o depósito</p>
+          <h3>BBVA</h3>
+          <p class="clabe">CLABE:<br>002180056384621514</p>
+        </div>
+
+        <!-- Artículos -->
+        <div class="tarjeta articulos">
+          <ul>
+            <li><span class="cuadro"></span> Alimento</li>
+            <li><span class="cuadro"></span> Periódico / Arena</li>
+            <li><span class="cuadro"></span> Artículos de limpieza</li>
+            <li><span class="cuadro"></span> Accesorios</li>
+          </ul>
+
+          <button class="boton-donar" onclick="window.location.href='donar_formulario.html'">
+            Donar ahora
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-content">
+
+      <div class="footer-col">
+        <h3>© 2025 MeowWoof</h3>
+        <p>Desarrollado por <strong>Daniel Ahuatzi Magdaleno</strong> y <strong>Kimberly Dánica Sánchez Cabrera</strong>.</p>
+        <p>Todos los derechos reservados.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Horarios</h4>
+        <p>Lunes a Viernes — 10:00 AM a 7:00 PM</p>
+        <p>Sábados — 11:30 AM a 5:30 PM</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ubicación</h4>
+        <p>Plaza de la Constitución No. 3</p>
+        <p>Colonia Centro</p>
+        <p>C.P. 90000, Tlaxcala de Xicohténcatl</p>
+        <p>Tlaxcala, México.</p>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

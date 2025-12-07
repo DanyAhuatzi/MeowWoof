@@ -1,0 +1,147 @@
+/* Tipografía y contenedor */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  text-align: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 30px rgba(0,0,0,0.08);
+  width: 380px;
+}
+
+h1 {
+  color: #002b6b;
+  font-size: 2em;
+  margin-bottom: 28px;
+}
+
+/* Inputs */
+.input-group {
+  text-align: left;
+  margin-bottom: 18px;
+}
+
+input[type="email"], 
+input[type="password"], 
+input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  margin: 0;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 14px;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+input:focus {
+  box-shadow: 0 0 0 3px rgba(0,43,107,0.08);
+  background: #fafafa;
+}
+
+/* Botón */
+button {
+  background: #002b6b;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+button:hover {
+  background: #003c9a;
+}
+
+/* Corregido: icono ver contraseña */
+.password-container {
+  position: relative;
+}
+
+.password-container .toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  width: 20px;
+  opacity: .65;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.password-container .toggle:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Mantener diseño al cambiar password <-> text */
+.password-container input[type="password"],
+.password-container input[type="text"] {
+  background: #f0f0f0 !important;
+}
+
+/* Mensajes de error cerca del input */
+.error-message {
+  color: #c0392b;
+  font-size: 13px;
+  margin-top: 6px;
+  display: block;
+  min-height: 16px;
+}
+
+/* Mensaje general debajo del botón */
+.form-error {
+  margin-top: 14px;
+  font-size: 14px;
+  color: #c0392b;
+  min-height: 18px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease;
+  text-align: center;
+}
+
+.form-error.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Botón regresar */
+.btn-regresar {
+  width: 100%;
+  background: #ffffff;
+  color: #002b6b;
+  border: 2px solid #002b6b;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.25s ease;
+}
+
+.btn-regresar:hover {
+  background: #eef3ff;
+  transform: scale(1.03);
+}
+
+

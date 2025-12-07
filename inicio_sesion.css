@@ -1,0 +1,68 @@
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+
+
+body {
+  background-color: #ffffff;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Figuras decorativas */
+.fondo { position: absolute; width: 100%; height: 100%; z-index: 0; }
+.figura { position: absolute; transform: rotate(45deg); }
+.izquierda { width: 350px; height: 350px; background: #001f5b; bottom: -120px; left: -150px; }
+.izquierda2 { width: 450px; height: 450px; background: #0047b3; bottom: -150px; left: -220px; }
+.derecha { width: 350px; height: 350px; background: #001f5b; top: -120px; right: -150px; }
+.derecha2 { width: 450px; height: 450px; background: #0047b3; top: -150px; right: -220px; }
+
+/* Contenedor */
+.contenedor {
+  position: relative;
+  z-index: 1;
+  width: 420px;
+  background: #fff;
+  padding: 36px 36px;
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+/* Título */
+h2 { color: #00296b; margin-bottom: 18px; font-size: 24px; }
+
+/* Inputs */
+form label { display: block; margin-top: 8px; margin-bottom: 6px; color: #333; text-align: left; }
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 22px;
+  border: none;
+  background: #f2f2f2;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Botón */
+button {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 22px;
+  background: #00296b;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background .2s;
+}
+button:hover { background: #0047ab; }
+
+/* Mensajes */
+.error { color: #d32f2f; font-size: 13px; display: block; margin-top: 6px; text-align: left; min-height: 18px; }
+.mensaje { margin-top: 14px; font-size: 15px; text-align: center; min-height: 20px; }
+
